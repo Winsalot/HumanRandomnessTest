@@ -5,12 +5,22 @@ Current progress:
 + Record the prediction accuracy
 + Generlalize for arbitrary n-gram size.
 + Compare to all ngrams up to size N for predictions.
++ Add hotkeys
 
 In progress:
 
 TODO:
-- Add hotkeys
+- Reset button.
 - Statistical evaluation of how random human keyporesses are.
+- UI overhaul:
+	- big buttons
+	- ScreenFilling format
+	- Prediction history.
+		- With colors
+	- Option to show/hide next prediction
+	- About tab
+		- Info about me.
+- Beta-binomial plot (will look badass)
 
 Fancy features:
 - Sample predictions from empiric distribution (binary)

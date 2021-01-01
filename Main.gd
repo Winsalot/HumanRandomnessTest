@@ -6,6 +6,8 @@ export var nacc_from = 10
 onready var button_history = []
 var next_press 
 var rng = RandomNumberGenerator.new()
+var z_score = "Keep Pressing Buttons"
+var p_value = "Keep Pressing Buttons"
 
 
 var ngram_freq = {}
@@ -30,7 +32,10 @@ func register_choice(value):
 	update_history(value)
 	update_frequencies()
 	next_press = predict_next()
+	update_z()
+	update_p_val()
 	update_labels()
+	
 	
 
 func update_history(keypress):
@@ -72,6 +77,32 @@ func update_acc(press):
 	if next_press == press:
 		accuracy[0]+=1
 
+func update_z():
+	if accuracy[1]<10:
+		return
+	var z = (accuracy[0] - (accuracy[1]/2.0) + 0.5) / (sqrt(accuracy[1] * 0.25))
+	z_score=String(z)
+
+func update_p_val():
+	if accuracy[1]<11:
+		return
+	var z = z_score
+	if float(z) < 1:
+		p_value = "> 0.15"
+	if float(z) > 1:
+		p_value = "<0.15"
+	if float(z) > 1.3:
+		p_value = "<0.10"
+	if float(z) > 1.65:
+		p_value = "<0.05"
+	if float(z) > 2.33:
+		p_value = "<0.01"
+	if float(z) > 3.1:
+		p_value = "<0.001"
+	if float(z) > 3.7:
+		p_value = "<0.0001"
+
+
 
 
 func update_labels():
@@ -82,7 +113,11 @@ func update_labels():
 	String(next_press)
 	$HBoxContainer/VBoxContainer2/Acc.text = "Accuracy: " + \
 	String(accuracy[0]/accuracy[1]) + \
-	"\n Number of predictions: " + String(accuracy[1])
+	"\n Number of predictions: " + String(accuracy[1]) + \
+	"\n Number of learned sequences: " + String(ngram_freq.size()) + \
+	"\n Z score: " + z_score + \
+	"\n p-value: " + p_value
+	
 
 func _on_Button_A_pressed():
 #	print("Button A pressed")
