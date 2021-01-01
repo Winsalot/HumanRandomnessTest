@@ -1,0 +1,24 @@
+Current progress:
++ Store dictionary with frequencies of all ngrams 2 to 5.
++ Update 5-gram history after every keypress.
++ Find last 4-gram presses and predict next keypress based on 5-gram history.
++ Record the prediction accuracy
+
+In progress:
+
+TODO:
+- Generlalize for arbitrary n-gram size.
+	- Problem: ngram dictionaries are hard-coded.
+- Compare to all ngrams up to size N for predictions.
+- Add hotkeys
+- Statistical evaluation of how random human keyporesses are.
+
+Fancy features:
+- Sample predictions from empiric distribution (binary)
+- For final prediction add up all n-gram predictions
+- Allow to change n-gram lookup during runtime.
+
+
+Arbitrary n-gram idea:
++single dictionary with all ngrams up to N.
+- keyporess calls register keypress function.

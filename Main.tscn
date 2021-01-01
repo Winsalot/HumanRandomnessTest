@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 428.0
+margin_bottom = 68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+margin_right = 428.0
+margin_bottom = 20.0
+
+[node name="Button_A" type="Button" parent="HBoxContainer/VBoxContainer/Container"]
+margin_right = 21.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="Button_B" type="Button" parent="HBoxContainer/VBoxContainer/Container"]
+margin_left = 25.0
+margin_right = 46.0
+margin_bottom = 20.0
+text = "B"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Label" parent="HBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 428.0
+margin_bottom = 38.0
+text = "Try pressing buttons A and B in order that is as random as possible"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 432.0
+margin_right = 432.0
+margin_bottom = 68.0
+
+[node name="ButtonHistory" type="Label" parent="HBoxContainer/VBoxContainer2"]
+margin_bottom = 14.0
+
+[node name="Last 5" type="Label" parent="HBoxContainer/VBoxContainer2"]
+margin_top = 18.0
+margin_bottom = 32.0
+
+[node name="Frequency of last 5" type="Label" parent="HBoxContainer/VBoxContainer2"]
+margin_top = 36.0
+margin_bottom = 50.0
+
+[node name="Next pred" type="Label" parent="HBoxContainer/VBoxContainer2"]
+margin_top = 54.0
+margin_bottom = 68.0
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container/Button_A" to="." method="_on_Button_A_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container/Button_B" to="." method="_on_Button_B_pressed"]
