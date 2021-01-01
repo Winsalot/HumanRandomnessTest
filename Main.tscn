@@ -29,15 +29,15 @@ margin_right = 428.0
 margin_bottom = 20.0
 
 [node name="Button_A" type="Button" parent="HBoxContainer/VBoxContainer/Container"]
-margin_right = 21.0
+margin_right = 20.0
 margin_bottom = 20.0
-text = "A"
+text = "0"
 
 [node name="Button_B" type="Button" parent="HBoxContainer/VBoxContainer/Container"]
-margin_left = 25.0
-margin_right = 46.0
+margin_left = 24.0
+margin_right = 44.0
 margin_bottom = 20.0
-text = "B"
+text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -53,19 +53,11 @@ margin_left = 432.0
 margin_right = 432.0
 margin_bottom = 68.0
 
-[node name="ButtonHistory" type="Label" parent="HBoxContainer/VBoxContainer2"]
+[node name="Next_pred" type="Label" parent="HBoxContainer/VBoxContainer2"]
 margin_bottom = 14.0
 
-[node name="Last 5" type="Label" parent="HBoxContainer/VBoxContainer2"]
+[node name="Acc" type="Label" parent="HBoxContainer/VBoxContainer2"]
 margin_top = 18.0
 margin_bottom = 32.0
-
-[node name="Frequency of last 5" type="Label" parent="HBoxContainer/VBoxContainer2"]
-margin_top = 36.0
-margin_bottom = 50.0
-
-[node name="Next pred" type="Label" parent="HBoxContainer/VBoxContainer2"]
-margin_top = 54.0
-margin_bottom = 68.0
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Container/Button_A" to="." method="_on_Button_A_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Container/Button_B" to="." method="_on_Button_B_pressed"]
