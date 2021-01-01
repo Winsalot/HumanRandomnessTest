@@ -1,10 +1,12 @@
 extends Control
 
 export var Ngram_max = 5
+export var nacc_from = 10
 
 onready var button_history = []
 var next_press 
 var rng = RandomNumberGenerator.new()
+
 
 var ngram_freq = {}
 
@@ -64,6 +66,8 @@ func predict_next():
 
 
 func update_acc(press):
+	if button_history.size()< nacc_from:
+		return
 	accuracy[1]+=1
 	if next_press == press:
 		accuracy[0]+=1
@@ -71,6 +75,9 @@ func update_acc(press):
 
 
 func update_labels():
+	if button_history.size() < nacc_from+1:
+		return
+	
 	$HBoxContainer/VBoxContainer2/Next_pred.text = "Next press prediction:" + \
 	String(next_press)
 	$HBoxContainer/VBoxContainer2/Acc.text = "Accuracy: " + \
