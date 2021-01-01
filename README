@@ -21,4 +21,6 @@ Fancy features:
 
 Arbitrary n-gram idea:
 +single dictionary with all ngrams up to N.
-- keyporess calls register keypress function.
++ keyporess calls register keypress function.
++ Implement a single container for all n-grams
++ Look up the longest n-1-gram that is equal to current sequence
