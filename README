@@ -6,12 +6,12 @@ Current progress:
 + Generlalize for arbitrary n-gram size.
 + Compare to all ngrams up to size N for predictions.
 + Add hotkeys
++ Statistical evaluation of how random human keyporesses are.
 
 In progress:
 
 TODO:
 - Reset button.
-- Statistical evaluation of how random human keyporesses are.
 - UI overhaul:
 	- big buttons
 	- ScreenFilling format
@@ -21,13 +21,6 @@ TODO:
 	- About tab
 		- Info about me.
 - Beta-binomial plot (will look badass)
-
-Fancy features:
-- Sample predictions from empiric distribution (binary)
-- For final prediction add up all n-gram predictions
-- Allow to change n-gram lookup during runtime.
-- Beta-binomial plot
-
 
 Arbitrary n-gram idea:
 +single dictionary with all ngrams up to N.

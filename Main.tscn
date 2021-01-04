@@ -2,17 +2,17 @@
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 
-[sub_resource type="InputEventAction" id=1]
-action = "select_0"
-
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
-
 [sub_resource type="InputEventAction" id=3]
 action = "select_1"
 
 [sub_resource type="ShortCut" id=4]
 shortcut = SubResource( 3 )
+
+[sub_resource type="InputEventAction" id=1]
+action = "select_0"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -23,56 +23,132 @@ __meta__ = {
 }
 Ngram_max = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 428.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Everything" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 994.0
+margin_bottom = 570.0
 
-[node name="Container" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_right = 428.0
-margin_bottom = 20.0
+[node name="ButtonBox" type="HBoxContainer" parent="MarginContainer/Everything"]
+margin_right = 994.0
+margin_bottom = 538.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Button_A" type="Button" parent="HBoxContainer/VBoxContainer/Container"]
-margin_right = 20.0
-margin_bottom = 20.0
-shortcut = SubResource( 2 )
-text = "0"
-
-[node name="Button_B" type="Button" parent="HBoxContainer/VBoxContainer/Container"]
-margin_left = 24.0
-margin_right = 44.0
-margin_bottom = 20.0
+[node name="Button_B" type="Button" parent="MarginContainer/Everything/ButtonBox"]
+margin_right = 495.0
+margin_bottom = 538.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 shortcut = SubResource( 4 )
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Instructions" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_top = 24.0
+[node name="Button_A" type="Button" parent="MarginContainer/Everything/ButtonBox"]
+margin_left = 499.0
+margin_right = 994.0
+margin_bottom = 538.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut = SubResource( 2 )
+text = "0"
+
+[node name="Predictions" type="Panel" parent="MarginContainer/Everything"]
+margin_top = 542.0
+margin_right = 994.0
+margin_bottom = 542.0
+
+[node name="HBoxPred" type="HBoxContainer" parent="MarginContainer/Everything/Predictions"]
+margin_top = 4.0
+margin_right = 994.0
+margin_bottom = 44.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/Everything/Predictions/HBoxPred"]
+margin_right = 214.0
+margin_bottom = 40.0
+text = "Show next prediction"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextPredLab" type="Label" parent="MarginContainer/Everything/Predictions/HBoxPred"]
+margin_left = 218.0
+margin_top = 13.0
+margin_right = 218.0
+margin_bottom = 27.0
+
+[node name="OtherInfo" type="HBoxContainer" parent="MarginContainer/Everything"]
+margin_top = 546.0
+margin_right = 994.0
+margin_bottom = 570.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="History" type="Panel" parent="MarginContainer/Everything/OtherInfo"]
+margin_bottom = 24.0
+
+[node name="StatsAbout" type="VBoxContainer" parent="MarginContainer/Everything/OtherInfo"]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 24.0
+
+[node name="Stats" type="Panel" parent="MarginContainer/Everything/OtherInfo/StatsAbout"]
+margin_right = 12.0
+
+[node name="About" type="Button" parent="MarginContainer/Everything/OtherInfo/StatsAbout"]
+margin_top = 4.0
+margin_right = 12.0
+margin_bottom = 24.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+visible = false
+margin_right = 994.0
+margin_bottom = 570.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 margin_right = 428.0
-margin_bottom = 38.0
+margin_bottom = 570.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 428.0
+
+[node name="Instructions" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 428.0
+margin_bottom = 18.0
 text = "Try pressing buttons A and B in order that is as random as possible"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 margin_left = 432.0
 margin_right = 432.0
-margin_bottom = 40.0
+margin_bottom = 570.0
 
-[node name="Next_pred" type="Label" parent="HBoxContainer/VBoxContainer2"]
+[node name="Next_pred" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 margin_bottom = 14.0
 
-[node name="Acc" type="Label" parent="HBoxContainer/VBoxContainer2"]
+[node name="Acc" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 margin_top = 18.0
 margin_bottom = 32.0
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container/Button_A" to="." method="_on_Button_A_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Container/Button_B" to="." method="_on_Button_B_pressed"]
+[connection signal="pressed" from="MarginContainer/Everything/ButtonBox/Button_B" to="." method="_on_Button_B_pressed"]
+[connection signal="pressed" from="MarginContainer/Everything/ButtonBox/Button_A" to="." method="_on_Button_A_pressed"]
