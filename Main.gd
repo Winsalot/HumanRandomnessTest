@@ -130,16 +130,6 @@ func update_labels():
 		"Z score: " + z_score
 		$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/PVal.text = \
 		"p-value: " + p_value
-	
-##	$HBoxContainer/VBoxContainer2/Next_pred.text = "Next press prediction:" + \
-##	String(next_press)
-#	$HBoxContainer/VBoxContainer2/Acc.text = "Accuracy: " + \
-#	String(accuracy[0]/accuracy[1]) + \
-#	"\n Number of predictions: " + String(accuracy[1]) + \
-#	"\n Number of learned sequences: " + String(ngram_freq.size()) + \
-#	"\n Z score: " + z_score + \
-#	"\n p-value: " + p_value
-	
 
 func _on_Button_A_pressed():
 #	print("Button A pressed")

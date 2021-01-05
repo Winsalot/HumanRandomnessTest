@@ -13,14 +13,15 @@ In progress:
 TODO:
 - Reset button.
 - UI overhaul:
-	+ big buttons
-	+ ScreenFilling format
 	- Prediction history.
 		- With colors
-	+ Option to show/hide next prediction
-	+ Stats panel
 	- About tab
 		- Info about me.
+	+ Welcome Screen
+	+ big buttons
+	+ ScreenFilling format
+	+ Option to show/hide next prediction
+	+ Stats panel
 
 Arbitrary n-gram idea:
 +single dictionary with all ngrams up to N.
