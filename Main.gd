@@ -106,17 +106,39 @@ func update_p_val():
 
 
 func update_labels():
-	if button_history.size() < nacc_from+1:
-		return
+#	if button_history.size() < nacc_from+1:
+#		return
 	
-	$HBoxContainer/VBoxContainer2/Next_pred.text = "Next press prediction:" + \
-	String(next_press)
-	$HBoxContainer/VBoxContainer2/Acc.text = "Accuracy: " + \
-	String(accuracy[0]/accuracy[1]) + \
-	"\n Number of predictions: " + String(accuracy[1]) + \
-	"\n Number of learned sequences: " + String(ngram_freq.size()) + \
-	"\n Z score: " + z_score + \
-	"\n p-value: " + p_value
+	# Label of next prediction. Updated regardless if visible:
+	if button_history.size() > nacc_from:
+		$MarginContainer/Everything/Predictions/HBoxPred/NextPredLab.text = \
+		"Next choice prediction: " + String(next_press)
+	
+	$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/NCount.text = \
+	"N: " + String(button_history.size())
+	
+	if button_history.size() > nacc_from+1:
+		$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/Accuracy.text = \
+		"Accuracy: " + String(accuracy[0]/accuracy[1]*100) + "%"
+	
+	$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/LearnedInfo.text = \
+	"Learned sequences: " + String(ngram_freq.size())
+	
+	# Z score and p value:
+	if button_history.size() > nacc_from+10:
+		$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/ZScore.text = \
+		"Z score: " + z_score
+		$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/PVal.text = \
+		"p-value: " + p_value
+	
+##	$HBoxContainer/VBoxContainer2/Next_pred.text = "Next press prediction:" + \
+##	String(next_press)
+#	$HBoxContainer/VBoxContainer2/Acc.text = "Accuracy: " + \
+#	String(accuracy[0]/accuracy[1]) + \
+#	"\n Number of predictions: " + String(accuracy[1]) + \
+#	"\n Number of learned sequences: " + String(ngram_freq.size()) + \
+#	"\n Z score: " + z_score + \
+#	"\n p-value: " + p_value
 	
 
 func _on_Button_A_pressed():
@@ -128,4 +150,9 @@ func _on_Button_A_pressed():
 func _on_Button_B_pressed():
 #	print("Button B pressed")
 	register_choice(1)
+	pass # Replace with function body.
+
+
+func _on_ShowPredButton_toggled(button_pressed):
+	$MarginContainer/Everything/Predictions/HBoxPred/NextPredLab.visible = button_pressed
 	pass # Replace with function body.

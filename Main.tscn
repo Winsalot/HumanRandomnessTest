@@ -36,13 +36,13 @@ margin_bottom = 600.0
 
 [node name="ButtonBox" type="HBoxContainer" parent="MarginContainer/Everything"]
 margin_right = 1024.0
-margin_bottom = 271.0
+margin_bottom = 266.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button_B" type="Button" parent="MarginContainer/Everything/ButtonBox"]
 margin_right = 510.0
-margin_bottom = 271.0
+margin_bottom = 266.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 shortcut = SubResource( 2 )
@@ -54,17 +54,17 @@ __meta__ = {
 [node name="Button_A" type="Button" parent="MarginContainer/Everything/ButtonBox"]
 margin_left = 514.0
 margin_right = 1024.0
-margin_bottom = 271.0
+margin_bottom = 266.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 shortcut = SubResource( 4 )
 text = "0"
 
 [node name="Predictions" type="Panel" parent="MarginContainer/Everything"]
-margin_top = 275.0
+margin_top = 270.0
 margin_right = 1024.0
-margin_bottom = 325.0
-rect_min_size = Vector2( 0, 50 )
+margin_bottom = 330.0
+rect_min_size = Vector2( 0, 60 )
 
 [node name="HBoxPred" type="HBoxContainer" parent="MarginContainer/Everything/Predictions"]
 anchor_right = 1.0
@@ -73,22 +73,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/Everything/Predictions/HBoxPred"]
+[node name="ShowPredButton" type="CheckButton" parent="MarginContainer/Everything/Predictions/HBoxPred"]
 margin_right = 214.0
-margin_bottom = 50.0
+margin_bottom = 60.0
 text = "Show next prediction"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NextPredLab" type="Label" parent="MarginContainer/Everything/Predictions/HBoxPred"]
+visible = false
 margin_left = 218.0
-margin_top = 18.0
-margin_right = 218.0
-margin_bottom = 32.0
+margin_top = 23.0
+margin_right = 1024.0
+margin_bottom = 37.0
+size_flags_horizontal = 3
+text = "AI is studying your patterns. Keep pressing buttons."
+autowrap = true
 
 [node name="OtherInfo" type="HBoxContainer" parent="MarginContainer/Everything"]
-margin_top = 329.0
+margin_top = 334.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -99,24 +103,65 @@ __meta__ = {
 
 [node name="History" type="Panel" parent="MarginContainer/Everything/OtherInfo"]
 margin_right = 510.0
-margin_bottom = 271.0
+margin_bottom = 266.0
 size_flags_horizontal = 3
 
 [node name="StatsAbout" type="VBoxContainer" parent="MarginContainer/Everything/OtherInfo"]
 margin_left = 514.0
 margin_right = 1024.0
-margin_bottom = 271.0
+margin_bottom = 266.0
 size_flags_horizontal = 3
 
 [node name="Stats" type="Panel" parent="MarginContainer/Everything/OtherInfo/StatsAbout"]
 margin_right = 510.0
-margin_bottom = 217.0
+margin_bottom = 212.0
 size_flags_vertical = 3
 
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NCount" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
+margin_right = 144.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "N: 0"
+
+[node name="Accuracy" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
+margin_top = 18.0
+margin_right = 144.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+text = "Accuracy: TBD"
+
+[node name="LearnedInfo" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
+margin_top = 36.0
+margin_right = 144.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+text = "Learned sequences:  0"
+
+[node name="ZScore" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
+margin_top = 54.0
+margin_right = 144.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+text = "Z score: TBD"
+
+[node name="PVal" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
+margin_top = 72.0
+margin_right = 144.0
+margin_bottom = 86.0
+size_flags_horizontal = 3
+text = "p-value: TBD"
+
 [node name="AboutPanel" type="Panel" parent="MarginContainer/Everything/OtherInfo/StatsAbout"]
-margin_top = 221.0
+margin_top = 216.0
 margin_right = 510.0
-margin_bottom = 271.0
+margin_bottom = 266.0
 rect_min_size = Vector2( 0, 50 )
 
 [node name="AboutButton" type="Button" parent="MarginContainer/Everything/OtherInfo/StatsAbout/AboutPanel"]
@@ -169,3 +214,4 @@ margin_top = 18.0
 margin_bottom = 32.0
 [connection signal="pressed" from="MarginContainer/Everything/ButtonBox/Button_B" to="." method="_on_Button_B_pressed"]
 [connection signal="pressed" from="MarginContainer/Everything/ButtonBox/Button_A" to="." method="_on_Button_A_pressed"]
+[connection signal="toggled" from="MarginContainer/Everything/Predictions/HBoxPred/ShowPredButton" to="." method="_on_ShowPredButton_toggled"]
