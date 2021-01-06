@@ -175,3 +175,8 @@ func _on_Button_B_pressed():
 func _on_ShowPredButton_toggled(button_pressed):
 	$MarginContainer/Everything/Predictions/HBoxPred/NextPredLab.visible = button_pressed
 	pass # Replace with function body.
+
+
+func _on_AboutButton_button_down():
+	$MarginContainer/About.visible = true
+	pass # Replace with function body.

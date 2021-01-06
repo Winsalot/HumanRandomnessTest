@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 
@@ -43,6 +43,30 @@ action = "ok"
 
 [sub_resource type="ShortCut" id=7]
 shortcut = SubResource( 6 )
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends Panel
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_Close_About_button_down():
+	self.visible = false
+	pass # Replace with function body.
+"
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -217,7 +241,6 @@ __meta__ = {
 }
 
 [node name="WelcomeScreen" type="Panel" parent="MarginContainer"]
-visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 script = SubResource( 5 )
@@ -253,7 +276,42 @@ text = "Press to Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="About" type="Panel" parent="MarginContainer"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+script = SubResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/About"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -128.5
+margin_right = 128.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutText" type="Label" parent="MarginContainer/About/VBoxContainer"]
+margin_top = 247.0
+margin_right = 257.0
+margin_bottom = 329.0
+size_flags_vertical = 6
+text = "Made by Vilius Peteraitis aka. Kovotojas.
+
+Looking for a job
+
+Please hire me"
+
+[node name="Close About" type="Button" parent="MarginContainer/About/VBoxContainer"]
+margin_top = 580.0
+margin_right = 257.0
+margin_bottom = 600.0
+text = "Close"
 [connection signal="pressed" from="MarginContainer/Everything/ButtonBox/Button_B" to="." method="_on_Button_B_pressed"]
 [connection signal="pressed" from="MarginContainer/Everything/ButtonBox/Button_A" to="." method="_on_Button_A_pressed"]
 [connection signal="toggled" from="MarginContainer/Everything/Predictions/HBoxPred/ShowPredButton" to="." method="_on_ShowPredButton_toggled"]
+[connection signal="button_down" from="MarginContainer/Everything/OtherInfo/StatsAbout/AboutPanel/AboutButton" to="." method="_on_AboutButton_button_down"]
 [connection signal="button_down" from="MarginContainer/WelcomeScreen/VBoxContainer/Begin!" to="MarginContainer/WelcomeScreen" method="_on_Begin_button_down"]
+[connection signal="button_down" from="MarginContainer/About/VBoxContainer/Close About" to="MarginContainer/About" method="_on_Close_About_button_down"]
