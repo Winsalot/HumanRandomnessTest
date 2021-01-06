@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 
@@ -37,6 +37,12 @@ func _on_Begin_button_down():
 	self.visible = false
 	pass # Replace with function body.
 "
+
+[sub_resource type="InputEventAction" id=6]
+action = "ok"
+
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -130,6 +136,13 @@ margin_right = 510.0
 margin_bottom = 266.0
 size_flags_horizontal = 3
 
+[node name="HistoryBox" type="VBoxContainer" parent="MarginContainer/Everything/OtherInfo/History"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="StatsAbout" type="VBoxContainer" parent="MarginContainer/Everything/OtherInfo"]
 margin_left = 514.0
 margin_right = 1024.0
@@ -204,6 +217,7 @@ __meta__ = {
 }
 
 [node name="WelcomeScreen" type="Panel" parent="MarginContainer"]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 script = SubResource( 5 )
@@ -234,6 +248,7 @@ margin_top = 302.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_vertical = 3
+shortcut = SubResource( 7 )
 text = "Press to Start"
 __meta__ = {
 "_edit_use_anchors_": false

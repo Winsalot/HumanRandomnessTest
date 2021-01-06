@@ -4,11 +4,18 @@ export var Ngram_max = 5
 export var nacc_from = 10
 
 onready var button_history = []
+#onready var label_base = preload("res://Label.tscn")
+
 var next_press 
 var rng = RandomNumberGenerator.new()
 var z_score = "Keep Pressing Buttons"
 var p_value = "Keep Pressing Buttons"
 
+
+# Number of history labels to show. 
+var n_history_lab = 5
+# format: vector of [line_reference (label node)]
+var history_lab = []
 
 var ngram_freq = {}
 
@@ -21,6 +28,13 @@ func _ready():
 	next_press = rng.randi_range(0,1)
 	pass # Replace with function body.
 
+func _process(delta):
+	n_history_lab = $MarginContainer/Everything/OtherInfo/History.get_size().y/18
+	while history_lab.size() > n_history_lab:
+		history_lab[0].queue_free()
+		history_lab.pop_front()
+
+
 func get_curr_ngram(n):
 	var last = button_history.slice(0,n-1)
 	last.invert()
@@ -28,15 +42,14 @@ func get_curr_ngram(n):
 
 # function called after every key choice.
 func register_choice(value):
-	update_acc(value)
-	update_history(value)
-	update_frequencies()
+	update_acc(value) # updates accuracy vector
+	update_history(value) # updates history vector
+	update_hist_labs(value) # updates history panel (front end)
+	update_frequencies() # upates learned sequences and their frequencies
 	next_press = predict_next()
 	update_z()
 	update_p_val()
 	update_labels()
-	
-	
 
 func update_history(keypress):
 	button_history.push_front(keypress)
@@ -130,6 +143,22 @@ func update_labels():
 		"Z score: " + z_score
 		$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/PVal.text = \
 		"p-value: " + p_value
+
+func update_hist_labs(value):
+	var text = ""
+	var label_base = Label.new()
+	
+	if button_history.size()> nacc_from+1:
+		text = String(button_history.size()) + ". Choice: " + String(value) + \
+		", Pred: " + String(next_press) 
+	else:
+		text = String(button_history.size()) + ". Choice: " + String(value)
+	
+	$MarginContainer/Everything/OtherInfo/History/HistoryBox.add_child(label_base)
+	label_base.text = text
+	
+	history_lab.push_back(label_base)
+
 
 func _on_Button_A_pressed():
 #	print("Button A pressed")
