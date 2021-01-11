@@ -12,16 +12,22 @@ In progress:
 
 TODO:
 - Reset button.
-- UI overhaul:
++ UI overhaul:
 	+ Prediction history.
 		- With colors
-	- About tab
+	+ About tab
 		- Info about me.
 	+ Welcome Screen
 	+ big buttons
 	+ ScreenFilling format
 	+ Option to show/hide next prediction
 	+ Stats panel
+
+Polishing:
+	- Smaller button, better looking welcome screen
+	- Actual info in about screen
+	- Colors in History
+	= Custom theme
 
 Arbitrary n-gram idea:
 +single dictionary with all ngrams up to N.
