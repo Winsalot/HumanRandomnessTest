@@ -1,20 +1,24 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://new_dynamicfont.tres" type="DynamicFont" id=2]
 
-[sub_resource type="InputEventAction" id=1]
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 2 )
+
+[sub_resource type="InputEventAction" id=2]
 action = "select_0"
 
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
-[sub_resource type="InputEventAction" id=3]
+[sub_resource type="InputEventAction" id=4]
 action = "select_1"
 
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=6]
 script/source = "extends Panel
 
 
@@ -38,13 +42,13 @@ func _on_Begin_button_down():
 	pass # Replace with function body.
 "
 
-[sub_resource type="InputEventAction" id=6]
+[sub_resource type="InputEventAction" id=7]
 action = "ok"
 
-[sub_resource type="ShortCut" id=7]
-shortcut = SubResource( 6 )
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=9]
 script/source = "extends Panel
 
 
@@ -71,11 +75,11 @@ func _on_Close_About_button_down():
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-Ngram_max = 10
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -99,7 +103,8 @@ margin_right = 510.0
 margin_bottom = 266.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-shortcut = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
+shortcut = SubResource( 3 )
 text = "0"
 
 [node name="Button_B" type="Button" parent="MarginContainer/Everything/ButtonBox"]
@@ -108,7 +113,8 @@ margin_right = 1024.0
 margin_bottom = 266.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-shortcut = SubResource( 4 )
+custom_fonts/font = ExtResource( 2 )
+shortcut = SubResource( 5 )
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,8 +134,9 @@ __meta__ = {
 }
 
 [node name="ShowPredButton" type="CheckButton" parent="MarginContainer/Everything/Predictions/HBoxPred"]
-margin_right = 214.0
+margin_right = 273.0
 margin_bottom = 60.0
+custom_fonts/font = ExtResource( 2 )
 text = "Show next prediction"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -142,6 +149,7 @@ margin_top = 23.0
 margin_right = 1024.0
 margin_bottom = 37.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 text = "AI is studying your patterns. Keep pressing buttons."
 autowrap = true
 
@@ -188,38 +196,51 @@ __meta__ = {
 }
 
 [node name="NCount" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
-margin_right = 144.0
-margin_bottom = 14.0
+margin_right = 198.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 text = "N: 0"
 
 [node name="Accuracy" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
-margin_top = 18.0
-margin_right = 144.0
-margin_bottom = 32.0
+margin_top = 27.0
+margin_right = 198.0
+margin_bottom = 50.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 text = "Accuracy: TBD"
 
 [node name="LearnedInfo" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
-margin_top = 36.0
-margin_right = 144.0
-margin_bottom = 50.0
+margin_top = 54.0
+margin_right = 198.0
+margin_bottom = 77.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 text = "Learned sequences:  0"
 
 [node name="ZScore" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
-margin_top = 54.0
-margin_right = 144.0
-margin_bottom = 68.0
+margin_top = 81.0
+margin_right = 198.0
+margin_bottom = 104.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 text = "Z score: TBD"
 
 [node name="PVal" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
-margin_top = 72.0
-margin_right = 144.0
-margin_bottom = 86.0
+margin_top = 108.0
+margin_right = 198.0
+margin_bottom = 131.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 text = "p-value: TBD"
+
+[node name="RollingAcc" type="Label" parent="MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer"]
+margin_top = 135.0
+margin_right = 198.0
+margin_bottom = 158.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Last-30 accuracy: TBD"
 
 [node name="AboutPanel" type="Panel" parent="MarginContainer/Everything/OtherInfo/StatsAbout"]
 margin_top = 216.0
@@ -235,6 +256,7 @@ anchor_bottom = 0.5
 margin_left = -50.0
 margin_top = -10.0
 margin_bottom = 10.0
+custom_fonts/font = ExtResource( 2 )
 text = "About"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -243,7 +265,7 @@ __meta__ = {
 [node name="WelcomeScreen" type="Panel" parent="MarginContainer"]
 margin_right = 1024.0
 margin_bottom = 600.0
-script = SubResource( 5 )
+script = SubResource( 6 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/WelcomeScreen"]
 anchor_right = 1.0
@@ -256,6 +278,7 @@ __meta__ = {
 margin_right = 1024.0
 margin_bottom = 298.0
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "Welcome. This app has only 2 buttons. Your task is to press them in an order that is as random and as unpredictable as possible. The Artificial Intelligence implemented in this app will do it's best to predict your next choice.
 
 This is intended to be a simple demonstration that humans are more predictable than we usually assume."
@@ -271,7 +294,7 @@ margin_top = 302.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_vertical = 3
-shortcut = SubResource( 7 )
+shortcut = SubResource( 8 )
 text = "Press to Start"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -281,32 +304,38 @@ __meta__ = {
 visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
-script = SubResource( 8 )
+script = SubResource( 9 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/About"]
-anchor_left = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -128.5
-margin_right = 128.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AboutText" type="Label" parent="MarginContainer/About/VBoxContainer"]
-margin_top = 247.0
-margin_right = 257.0
-margin_bottom = 329.0
+margin_top = 64.0
+margin_right = 1024.0
+margin_bottom = 503.0
 size_flags_vertical = 6
-text = "Made by Vilius Peteraitis aka. Kovotojas.
+custom_fonts/font = ExtResource( 2 )
+text = "This app is based based on \"Aaronson Oracle\", but with expanded capabilities: https://github.com/elsehow/aaronson-oracle
 
-Looking for a job
+How does it work?
 
-Please hire me"
+The program remembers all the sequences (up to 5 button presses) chosen by human and compares it to the last 4 choices made to make a next prediction. This implementation is enhanced in a way that if there is not enough data to find a corresponding 5-gram (5 choice sequence), then predictions are made using longest available sequence (4-gram if available, if not then try 3-gram, 2-gram, etc.).
+
+On top of that, this program supports use of any size of n-gram (could be as big as 100), but I believe that using too much data could easily result in \"overfitting\" which would harm the prediction accuracy.
+
+Made by Vilius Peteraitis, who is currently looking for a job.
+Email: peteraitis.vilius@gmail.com
+
+"
+autowrap = true
 
 [node name="Close About" type="Button" parent="MarginContainer/About/VBoxContainer"]
-margin_top = 580.0
-margin_right = 257.0
+margin_top = 571.0
+margin_right = 1024.0
 margin_bottom = 600.0
 text = "Close"
 [connection signal="pressed" from="MarginContainer/Everything/ButtonBox/Button_A" to="." method="_on_Button_A_pressed"]

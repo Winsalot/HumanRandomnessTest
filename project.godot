@@ -19,6 +19,10 @@ config/name="HumanRandomnessTest"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/handheld/orientation="portrait"
+
 [input]
 
 select_0={

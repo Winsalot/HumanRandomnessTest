@@ -16,6 +16,8 @@ var p_value = "Keep Pressing Buttons"
 var n_history_lab = 5
 # format: vector of [line_reference (label node)]
 var history_lab = []
+var rolling_acc = []
+var rolling_acc_len = 30
 
 var ngram_freq = {}
 
@@ -28,11 +30,15 @@ func _ready():
 	next_press = rng.randi_range(0,1)
 	pass # Replace with function body.
 
-func _process(delta):
-	n_history_lab = $MarginContainer/Everything/OtherInfo/History.get_size().y/18
+func _process(_delta):
+	print(rolling_acc.size())
+	n_history_lab = $MarginContainer/Everything/OtherInfo/History.get_size().y/10
 	while history_lab.size() > n_history_lab:
-		history_lab[0].queue_free()
 		history_lab.pop_front()
+	while rolling_acc.size() > rolling_acc_len:
+		rolling_acc.pop_front()
+	var screen_size = self.get_viewport().size
+	self.theme.get_default_font().size = min(screen_size[0], screen_size[1])/30
 
 
 func get_curr_ngram(n):
@@ -43,6 +49,7 @@ func get_curr_ngram(n):
 # function called after every key choice.
 func register_choice(value):
 	update_acc(value) # updates accuracy vector
+	update_rolling_acc(value)
 	update_history(value) # updates history vector
 	update_hist_labs(value) # updates history panel (front end)
 	update_frequencies() # upates learned sequences and their frequencies
@@ -84,11 +91,17 @@ func predict_next():
 
 
 func update_acc(press):
-	if button_history.size()< nacc_from:
-		return
+#	if button_history.size()< nacc_from:
+#		return
 	accuracy[1]+=1
 	if next_press == press:
 		accuracy[0]+=1
+
+func update_rolling_acc(press):
+	if next_press == press:
+		rolling_acc.push_back(1)
+	else:
+		rolling_acc.push_back(0)
 
 func update_z():
 	if accuracy[1]<10:
@@ -130,7 +143,8 @@ func update_labels():
 	$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/NCount.text = \
 	"N: " + String(button_history.size())
 	
-	if button_history.size() > nacc_from+1:
+#	if button_history.size() > nacc_from+1:
+	if accuracy[1] > 0:
 		$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/Accuracy.text = \
 		"Accuracy: " + String(accuracy[0]/accuracy[1]*100) + "%"
 	
@@ -143,6 +157,17 @@ func update_labels():
 		"Z score: " + z_score
 		$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/PVal.text = \
 		"p-value: " + p_value
+	
+	if rolling_acc.size() >= rolling_acc_len:
+		$MarginContainer/Everything/OtherInfo/StatsAbout/Stats/VBoxContainer/RollingAcc.text = \
+		"Last-30 accuracy: " + String(average(rolling_acc)) + " %"
+
+func average(array):
+	var sum = 0.0
+	for element in array:
+		sum += element
+	var avg = sum / array.size() * 100
+	return stepify(avg, 0.01)
 
 func update_hist_labs(value):
 	var text = ""
@@ -155,8 +180,8 @@ func update_hist_labs(value):
 		text = String(button_history.size()) + ". Choice: " + String(value)
 	
 	$MarginContainer/Everything/OtherInfo/History/HistoryBox.add_child(label_base)
+	$MarginContainer/Everything/OtherInfo/History/HistoryBox.move_child(label_base, 0)
 	label_base.text = text
-	
 	history_lab.push_back(label_base)
 
 
