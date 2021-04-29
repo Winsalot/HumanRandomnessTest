@@ -1,36 +1,3 @@
-Current progress:
-+ Store dictionary with frequencies of all ngrams 2 to 5.
-+ Update 5-gram history after every keypress.
-+ Find last 4-gram presses and predict next keypress based on 5-gram history.
-+ Record the prediction accuracy
-+ Generlalize for arbitrary n-gram size.
-+ Compare to all ngrams up to size N for predictions.
-+ Add hotkeys
-+ Statistical evaluation of how random human keyporesses are.
+# Human randomness test
 
-In progress:
-
-TODO:
-- Reset button.
-+ UI overhaul:
-	+ Prediction history.
-		- With colors
-	+ About tab
-		- Info about me.
-	+ Welcome Screen
-	+ big buttons
-	+ ScreenFilling format
-	+ Option to show/hide next prediction
-	+ Stats panel
-
-Polishing:
-	- Smaller button, better looking welcome screen
-	- Actual info in about screen
-	- Colors in History
-	= Custom theme
-
-Arbitrary n-gram idea:
-+single dictionary with all ngrams up to N.
-+ keyporess calls register keypress function.
-+ Implement a single container for all n-grams
-+ Look up the longest n-1-gram that is equal to current sequence
+Do you think that your biological brain can generate random sequence of numbers? Then this is the place to test it out!
