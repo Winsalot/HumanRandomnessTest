@@ -1,6 +1,6 @@
 extends Control
 
-export var Ngram_max = 5
+export var Ngram_max = 8
 export var nacc_from = 10
 
 onready var button_history = []

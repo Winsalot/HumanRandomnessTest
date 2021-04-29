@@ -323,7 +323,7 @@ text = "This app is based based on \"Aaronson Oracle\", but with expanded capabi
 
 How does it work?
 
-The program remembers all the sequences (up to 5 button presses) chosen by human and compares it to the last 4 choices made to make a next prediction. This implementation is enhanced in a way that if there is not enough data to find a corresponding 5-gram (5 choice sequence), then predictions are made using longest available sequence (4-gram if available, if not then try 3-gram, 2-gram, etc.).
+The program remembers all the sequences (up to 8 button presses) chosen by human and compares it to the last 4 choices made to make a next prediction. This implementation is enhanced in a way that if there is not enough data to find a corresponding 5-gram (5 choice sequence), then predictions are made using longest available sequence (4-gram if available, if not then try 3-gram, 2-gram, etc.).
 
 On top of that, this program supports use of any size of n-gram (could be as big as 100), but I believe that using too much data could easily result in \"overfitting\" which would harm the prediction accuracy.
 
